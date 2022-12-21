@@ -5,8 +5,6 @@ const galleryRef = document.querySelector(".gallery");
 const galleryMarkUp = createMarkUp(galleryItems);
 galleryRef.innerHTML = galleryMarkUp;
 
-galleryRef.addEventListener("click", onImageClick);
-
 let lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
@@ -22,6 +20,3 @@ function createMarkUp(galleryItems) {
     .join("");
 }
 
-function onImageClick(event) {
-  event.preventDefault();
-}

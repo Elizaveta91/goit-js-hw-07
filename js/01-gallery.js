@@ -16,8 +16,7 @@ function createMakrUp(galleryItems) {
       class="gallery__image"
       src="${preview}"
       data-source="${original}"
-      alt="${description}"
-    />
+      alt="${description}"/>
   </a>
 </div>`;
     })
@@ -31,19 +30,15 @@ function onImageClick(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  instance = basicLightbox.create(
-    `
-    <img src=${event.target.dataset.source}>
-`
-  );
+  instance.element().querySelector('img').src=event.target.dataset.source;
   instance.show();
 
-  document.addEventListener("keydown", onEscCloseModal);
+  onShow.document.addEventListener("keydown", onEscCloseModal);
 }
 
 function onEscCloseModal(event) {
   if (event.code === "Escape") {
     instance.close();
-    document.removeEventListener("keydown", onEscCloseModal);
+    onClose.document.removeEventListener("keydown", onEscCloseModal);
   }
 }
