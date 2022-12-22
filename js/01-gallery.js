@@ -21,9 +21,16 @@ function createMakrUp(galleryItems) {
 </div>`;
     })
     .join("");
-}
+} 
 
-let instance = "";
+const instance = basicLightbox.create(`<img class="modal-img" src="">`, {
+  onShow: instance => {
+    window.addEventListener("keydown", onEscCloseModal);
+  },
+  onClose: instance => {
+    window.removeEventListener("keydown", onEscCloseModal);
+  },
+});
 
 function onImageClick(event) {
   event.preventDefault();
@@ -32,13 +39,11 @@ function onImageClick(event) {
   }
   instance.element().querySelector('img').src=event.target.dataset.source;
   instance.show();
-
-  onShow.document.addEventListener("keydown", onEscCloseModal);
 }
 
 function onEscCloseModal(event) {
   if (event.code === "Escape") {
     instance.close();
-    onClose.document.removeEventListener("keydown", onEscCloseModal);
+    return;
   }
 }
